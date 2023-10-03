@@ -4,26 +4,29 @@ author: "Marie Johannsen"
 date: "03-10-2023"
 ---
 
-### Firstly, I ran the tidyverse and here packages on my RMarkdown document and created the vector Full_data_kings with the data from my spreadsheet of the kings.
+### Setting up
+##### Firstly, I ran the tidyverse and here packages on my RMarkdown document and created the vector Full_data_kings with the data from my spreadsheet of the kings.
 ```{r setup, echo=TRUE, message=FALSE}
 library(tidyverse)
 library(here)
 Full_data_kings <- read_csv("data/Konger.csv")
 ```
 
-### Secondly, I mutated the data to create a new column with the duration of reign by subtracting the start-reign-data from the end-reign-data and this gave me a new column, which I named duration_reign.
+### Finding the duration of reign
+##### Secondly, I mutated the data to create a new column with the duration of reign by subtracting the start-reign-data from the end-reign-data and this gave me a new column, which I named duration_reign.
 ```{r new column, include=TRUE}
 Full_data_kings %>% 
   mutate(duration_reign = `End reign`- `Start reign`) %>% 
   glimpse()
 ```
-### Next, I made the duration_reign data into its own vector called reign.
+##### Next, I made the duration_reign data into its own vector called reign.
 ```{r new vector, include=TRUE}
 reign <- Full_data_kings %>% 
   mutate(duration_reign = `End reign`- `Start reign`)
 ```
 
-### Lastly, I created my visualization of the reign-vector using ggplot. I chose the specifics for my graph as seen below, the name "Time" for the x-axis and "Duration of reign" for the y-axis and the colour blue. For my x-axis I used the start-reign data to base it on, because it gives me a progressing timeline matching the other data and I wouldnt know how to create a custom timeline in R in an easy way. 
+### Visualization
+##### Lastly, I created my visualization of the reign-vector using ggplot. I chose the specifics for my graph as seen below, the name "Time" for the x-axis and "Duration of reign" for the y-axis and the colour blue. For my x-axis I used the start-reign data to base it on, because it gives me a progressing timeline matching the other data and I wouldnt know how to create a custom timeline in R in an easy way. 
 ```{r visualization, include=TRUE, warning=FALSE}
 
 reign %>% 
